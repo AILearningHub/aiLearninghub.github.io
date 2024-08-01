@@ -21,6 +21,18 @@
             text-align: center;
             margin: 20px;
         }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+            position: relative;
+        }
+        .left-image {
+            position: absolute;
+            left: 20px;
+        }
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -95,7 +107,12 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="header">
+        <a href="HelpCenter.html" class="left-image">
+            <img src="HelpCenter.jpg" alt="Help Center" width="100" height="100">
+        </a>
     <h1>AI and Optimization Example Hub</h1>
+    </div>
     <div class="gallery">
         <div class="item">
             <img src="ResourceConstrained1.jpg" alt="Resource-Constrained Problem">
