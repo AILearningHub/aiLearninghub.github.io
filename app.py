@@ -29,11 +29,11 @@ def register_page():
         conn.close()
 
         flash('Registration successful! Please log in.')
-        return redirect('login.html')
+        return redirect(url_for('login_page'))
 
     return render_template('register.html')
 
-@app.route('/login.html', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login_page():
     if request.method == 'POST':
         email = request.form['email']
