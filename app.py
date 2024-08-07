@@ -71,15 +71,21 @@ def login_page():
         
         if user and bcrypt.checkpw(password.encode(), user['password']):
             flash('Login successful!')
-            return redirect(url_for('main_page'))
+            return redirect(url_for('index_page'))
         else:
             flash('Invalid username or password. Please try again.')
 
     return render_template('login.html')
 
 @app.route('/')
+def home():
+    return 'Welcome to the Home Page. Please login or register.'
+
+@app.route('/index')
 def index_page():
     return render_template('index.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
