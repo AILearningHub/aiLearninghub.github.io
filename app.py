@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 import sqlite3
 import bcrypt
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flashing messages
@@ -31,7 +32,7 @@ def register_page():
         flash('Registration successful! Please log in.')
         return redirect(url_for('login_page'))
 
-    return render_template('register.html')
+    return send_from_directory('.', 'register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
@@ -49,7 +50,7 @@ def login_page():
         else:
             flash('Invalid email or password. Please try again.')
 
-    return render_template('login.html')
+    return send_from_directory('.', 'login.html')
 
 @app.route('/')
 def main_page():
