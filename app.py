@@ -10,7 +10,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route('/register.html', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register_page():
     if request.method == 'POST':
         email = request.form['email']
@@ -29,7 +29,7 @@ def register_page():
         conn.close()
 
         flash('Registration successful! Please log in.')
-        return redirect(url_for('login_page'))
+        return redirect('login.html')
 
     return render_template('register.html')
 
