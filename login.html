@@ -71,6 +71,22 @@
         .login-container .signup a:hover {
             text-decoration: underline;
         }
+        /* Flash message styles */
+        .flash {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .flash.error {
+            color: red;
+            border: 1px solid red;
+            background-color: #f8d7da;
+        }
+        .flash.success {
+            color: green;
+            border: 1px solid green;
+            background-color: #d4edda;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +94,14 @@
         <h2>Login</h2>
         <br>
         <br>
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form action="/login" method="POST">
             <div>
                 <label for="username">Username:</label>
