@@ -73,7 +73,7 @@ def login_page():
             flash('Login successful!')
             return redirect(url_for('index_page'))
         else:
-            flash('Invalid username or password. Please try again.')
+             flash('Username or password is not correct. Please try again.', 'error')
 
     return render_template('login.html')
 
