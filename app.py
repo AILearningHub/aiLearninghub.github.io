@@ -79,7 +79,25 @@ def login_page():
 
 @app.route('/')
 def home():
-    return 'Welcome to the Home Page. Please login or register.'
+    return '''
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Home Page</title>
+            <style>
+                body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+                button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+            </style>
+        </head>
+        <body>
+            <h1>Welcome to the Home Page. Please login or register.</h1>
+            <a href="/register"><button>Register</button></a>
+            <a href="/login"><button>Login</button></a>
+        </body>
+        </html>
+    '''
 
 @app.route('/index')
 def index_page():
