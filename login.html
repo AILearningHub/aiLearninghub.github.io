@@ -42,9 +42,11 @@
         .login-container input {
             padding: 10px;
             font-size: 1.1em;
-            width: 100%;
+            width: calc(100% - 20px); /* Adjusted for padding */
+            margin: 0 auto; /* Center horizontally */
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         .login-container button {
             padding: 10px 20px;
