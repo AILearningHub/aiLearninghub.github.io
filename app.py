@@ -88,7 +88,7 @@ def login_page():
         
         if user and bcrypt.checkpw(password.encode(), user['password']):
             flash('Login successful!')
-            return redirect(url_for('index_page'))
+            return redirect(url_for('https://ailearninghub.github.io'))
         else:
              flash('Username or password is not correct. Please try again.', 'error')
 
