@@ -47,17 +47,34 @@ def register_page():
         hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         
         conn = get_db_connection()
+        cursor = conn.cursor()
+        
         try:
+            # Check if username already exists
+            cursor.execute('SELECT 1 FROM users WHERE username = ?', (username,))
+            if cursor.fetchone():
+                flash('Username already exists. Please choose another one.')
+                return redirect(url_for('register_page'))
+            
+            # Check if email already exists
+            cursor.execute('SELECT 1 FROM users WHERE email = ?', (email,))
+            if cursor.fetchone():
+                flash('Email already exists. Please choose another one.')
+                return redirect(url_for('register_page'))
+            
+            # If both checks pass, insert the new user
             conn.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', (username, email, hashed_password))
             conn.commit()
             flash('Registration successful! Please log in.')
-            return redirect(url_for('login_page'))
-        except sqlite3.IntegrityError:
-            flash('Username or email already exists. Please choose another one.')
+            return redirect('https://ailearninghub.github.io/login.html')
+        except sqlite3.Error as e:
+            flash('An error occurred during registration. Please try again.')
+            print(f"Database error: {e}")
         finally:
             conn.close()
 
     return render_template('register.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
